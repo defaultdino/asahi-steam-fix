@@ -1,0 +1,14 @@
+--- a/usr/bin/steam	2026-08-01 11:39:24.773705827 +0000
++++ b/usr/bin/steam	2026-08-01 11:39:25.274779625 +0000
+@@ -82,7 +82,13 @@
+     open(f'{data_dir}/version', 'w').write(URL)
+ 
+ def muvm(cmd):
+-    return pexpect.spawn("muvm", ["--"] + cmd)
++    fixup = os.path.expanduser("~/.local/lib/muvm-dmabuf-fixup.so")
++    dbus = os.path.expanduser("~/.local/lib/muvm-guest-dbus.sh")
++    env = os.environ.copy()
++    if os.path.exists(fixup):
++        env["LD_PRELOAD"] = fixup
++    args = ["-x", dbus] if os.path.exists(dbus) else []
++    return pexpect.spawn("muvm", args + ["--"] + cmd, env=env)
