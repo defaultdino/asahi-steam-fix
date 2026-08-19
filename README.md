@@ -1,6 +1,6 @@
 # asahi-steam-fix
 
-Fixes for running Steam on **Fedora Asahi Remix** that get you past two specific failures the `steam` package hits:
+includes fixes for running Steam on **Fedora Asahi Remix** on ARM64 architecture Macbooks, getting you past two specific failures the `steam` package hits:
 
 - Steam launches, the client comes up, but it's stuck forever on **"Waiting for network"** even though networking is fine.
 - Steam (or muvm) **crashes the VM** with `Failure during vcpu run: Bad address (os error 14)` usually right as Steam touches GPU-related resources.
